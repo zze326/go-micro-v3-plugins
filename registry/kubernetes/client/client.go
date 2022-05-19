@@ -7,10 +7,11 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"strings"
 
-	log "github.com/asim/go-micro/v3/logger"
 	"github.com/asim/go-micro/plugins/registry/kubernetes/v3/client/api"
 	"github.com/asim/go-micro/plugins/registry/kubernetes/v3/client/watch"
+	log "github.com/asim/go-micro/v3/logger"
 )
 
 var (
@@ -74,11 +75,14 @@ func NewClientByHost(host string) Kubernetes {
 		Transport: tr,
 	}
 
+	token := strings.TrimSpace(os.Getenv("KUBERNETES_BEARER_TOKEN"))
+
 	return &client{
 		opts: &api.Options{
-			Client:    c,
-			Host:      host,
-			Namespace: "default",
+			Client:      c,
+			Host:        host,
+			Namespace:   "default",
+			BearerToken: &token,
 		},
 	}
 }

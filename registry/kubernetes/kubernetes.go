@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/asim/go-micro/plugins/registry/kubernetes/v3/client"
+	"github.com/zze326/go-micro-v3-plugins/registry/kubernetes/v3/client"
 
 	"github.com/asim/go-micro/v3/cmd"
 	"github.com/asim/go-micro/v3/registry"
